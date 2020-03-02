@@ -256,7 +256,9 @@ We now write $p = x\overrightarrow{u} + y\overrightarrow{v} + z\overrightarrow{w
 We may place objects in this 3D space as points or sets of points. Our goal is to perform transformations in 3D space to some point $p = (x, y, z)$.
 
 \subsection{Translation}
+\begin{center}
 \includegraphics[scale=0.75]{translation}
+\end{center}
 We want to move the point $p = (x, y, z)$ to a new position $p' = (x+a, y+b, z+c)$. This naturally becomes a mapping from $[x, y, c, 1] \rightarrow [x+a, y+b, z+c, 1]$. We will need a $4 \times 4$ matrix:
 
 \begin{equation}
@@ -293,7 +295,9 @@ This matrix will perform a 3D translation to any point $p = (x, y, z)$ to a new 
 
 
 \subsection{Scaling}
+\begin{center}
 \includegraphics[scale=0.75]{scale}
+\end{center}
 
 We can similarly compose the scaling matrix creating a mapping from \\ $[x, y, c, 1] \rightarrow [ax, by, cz, 1]$:
 
@@ -335,7 +339,9 @@ This matrix will perform a 3D scaling to any point $p = (x, y, z)$ by $(a, b, c)
 Note that both translation and scaling acts along an axis; however rotation in 3D is performed around a given axis, making it a bit more interesting than translation, scaling as well as its 2D counterpart. Given a 3D space, there exists an arbitrary number of possible axes.  We will begin by rotating about well defined axes and then around any arbitrary axes.
 
 \subsection{Rotation (z-Axis)}
+\begin{center}
 \includegraphics[scale=0.75]{zRotation}
+\end{center}
 
 We can image that the z-axis is the direction in which we view the 2D plane defined by $x$ and $y$ in the 2D scenario. To directly extend from the 2D rotational matrix, we first look at the rotation about the z-axis.
 
@@ -391,7 +397,9 @@ Let's see how this would work in an example. Suppose we would like to rotate a p
 \end{equation}
 
 \subsection{Rotation (x-Axis)}
+\begin{center}
 \includegraphics[scale=0.75]{xRotation}
+\end{center}
 
 To begin, rotating about the x-axis is similar that rotating about the z-axis in that the rotation still follows the right-hand-rule. Note that the right hand rule in this case curls towards the extension of the z-axis. To construct the rotational matrix for x-axis, we must observe that the x-component (by definition of rotation about the x-axis) cannot change. Hence, we have the constraint the components affected by the x-component must not change:
 
@@ -446,7 +454,9 @@ Now, suppose we would like to rotate a point from $(0, 1, 0) \rightarrow (0, 0, 
 
 
 \subsection{Rotation (y-Axis)}
+\begin{center}
 \includegraphics[scale=0.75]{yRotation}
+\end{center}
 
 Now we would imagine that the extension to the y-axis would be similar to that of the x-axis and z-axis. We know that to construct the rotational matrix for y-axis, we must observe that the y-component (again by definition of rotation about the y-axis) cannot change:
 
@@ -550,7 +560,10 @@ Now if we were to reapply the rotation about the y-axis, we expect to get the co
     \end{aligned}
 \end{equation}
 
-\subsection{Rotation About An Arbituary Axis}
+\subsection{Rotation About An Arbitrary Axis}
+\begin{center}
+\includegraphics[scale=0.75]{rot1}
+\end{center}
 
 Suppose we would like to rotate an arbitrary axis by an angle $\alpha$ where the axis is defined by a point $q = (q_x, q_y, q_z)$ and a vector $\overrightarrow{v} = <v_x, v_y, v_z>$. To rotate by $\alpha$ along this axis, we need to massage the axis to a known axis (namely the z-axis as it is the most standard one). Once it is co-linear with the known axis, we can rotate by $\alpha$ and massage the to the original position.
 
@@ -566,7 +579,9 @@ Suppose we would like to rotate an arbitrary axis by an angle $\alpha$ where the
     \end{bmatrix}
 \end{equation}
 
-\newpage
+\begin{center}
+\includegraphics[scale=0.75]{rot2}
+\end{center}
 
 (2) Next we need to transform the points and the axis such that it is co-planar with a known plane (namely, y-z plane). We then rotate about the y-axis by some angle $\psi$ such that it is co-planar to the y-z plane:
 
@@ -588,6 +603,10 @@ Notice that we have rotated in the opposite direction. In this case, we will nee
     \psi = 360^{\circ}-\text{tan}^{-1}(\frac{v_x}{v_z}) = -\theta
 \end{equation}
 
+\begin{center}
+\includegraphics[scale=0.75]{rot3}
+\end{center}
+
 (3) Now that we are co-planar with the y-z plane, we will need to rotate about the x-axis by an angle $\phi$ to become co-linear with the z-axis:
 
 \begin{equation}
@@ -600,6 +619,9 @@ Notice that we have rotated in the opposite direction. In this case, we will nee
 \end{equation}
 
 Again, we will need to figure out what $\phi$ is. Since we are co-planar with y-z, there is no x-component (which is good since we will be rotating about the x-axis). Note that we have rotated the vector about the y-axis, this is a transformation of $\overrightarrow{v}$'s z-component using $v_x$ and $v_z$. The new $v_z' = \sqrt{v_x^2+v_z^2}$. Since the y-component remains unchanged, we can again apply the same geometric relation to obtain:
+
+\includegraphics[scale=0.75]{rot4}
+
 
 \begin{equation}
     \phi = \text{tan}^{-1}(\frac{v_y}{v_z'}) = \text{tan}^{-1}(\frac{v_y}{\sqrt{v_x^2+v_z^2}})
@@ -615,6 +637,10 @@ Again, we will need to figure out what $\phi$ is. Since we are co-planar with y-
         0 & 0 & 0 & 1
     \end{bmatrix}
 \end{equation}
+
+\begin{center}
+\includegraphics[scale=0.75]{rot5}
+\end{center}
 
 (5) Since we have centered ourselves at the origin, we must rotate and translate back to the original frame of reference. We can simply use the inverse of our translation $T^{-1}_{t_x, t_y, t_z}$, $R^{-1}_{y, \psi}$, $R^{-1}_{x, \phi}$.
 
@@ -632,8 +658,14 @@ We arrive at our final set of transformation $g$ where $g$ is some global transf
 
 Note that the order in which we apply the matrices matter! The new set of points $p'$ will simply be $p' = gp$.
 
+\begin{center}
+\includegraphics[scale=0.75]{rot6}
+\end{center}
+
 \section{Degrees of Freedom}
+\begin{center}
 \includegraphics[scale=0.75]{DOF}
+\end{center}
 
 Now that we are able to translate, scale, and rotate in 3 dimensional space, we notice that there exists six degrees of freedom (DoF). The degrees of freedom of an object refers to the number of ways by which it can move. For 3 dimensions, the six degrees of freedom include:
 
@@ -646,7 +678,9 @@ Now that we are able to translate, scale, and rotate in 3 dimensional space, we 
     \item Rotating about z-axis (roll)
 \end{enumerate}
 
+\begin{center}
 \includegraphics[scale=0.5]{gimballock}
+\end{center}
 
 However, the degrees of freedom are not as free as one would think. Suppose we represent the orientation (or pose) of an object (e.g. an airplane) by its position (x, y, z) and three gimbals (rings representing the rotation about x, y, and z-axis) in 3D space.
 
