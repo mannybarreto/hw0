@@ -2,6 +2,7 @@
 
 \usepackage{times}
 \usepackage{graphicx}
+\graphicspath{ {./images/} }
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{parskip}
@@ -255,6 +256,7 @@ We now write $p = x\overrightarrow{u} + y\overrightarrow{v} + z\overrightarrow{w
 We may place objects in this 3D space as points or sets of points. Our goal is to perform transformations in 3D space to some point $p = (x, y, z)$.
 
 \subsection{Translation}
+\includegraphics[scale=0.75]{translation}
 We want to move the point $p = (x, y, z)$ to a new position $p' = (x+a, y+b, z+c)$. This naturally becomes a mapping from $[x, y, c, 1] \rightarrow [x+a, y+b, z+c, 1]$. We will need a $4 \times 4$ matrix:
 
 \begin{equation}
@@ -291,6 +293,8 @@ This matrix will perform a 3D translation to any point $p = (x, y, z)$ to a new 
 
 
 \subsection{Scaling}
+\includegraphics[scale=0.75]{scale}
+
 We can similarly compose the scaling matrix creating a mapping from \\ $[x, y, c, 1] \rightarrow [ax, by, cz, 1]$:
 
 \begin{equation}
@@ -331,6 +335,8 @@ This matrix will perform a 3D scaling to any point $p = (x, y, z)$ by $(a, b, c)
 Note that both translation and scaling acts along an axis; however rotation in 3D is performed around a given axis, making it a bit more interesting than translation, scaling as well as its 2D counterpart. Given a 3D space, there exists an arbitrary number of possible axes.  We will begin by rotating about well defined axes and then around any arbitrary axes.
 
 \subsection{Rotation (z-Axis)}
+\includegraphics[scale=0.75]{zRotation}
+
 We can image that the z-axis is the direction in which we view the 2D plane defined by $x$ and $y$ in the 2D scenario. To directly extend from the 2D rotational matrix, we first look at the rotation about the z-axis.
 
 \begin{equation}
@@ -385,6 +391,8 @@ Let's see how this would work in an example. Suppose we would like to rotate a p
 \end{equation}
 
 \subsection{Rotation (x-Axis)}
+\includegraphics[scale=0.75]{xRotation}
+
 To begin, rotating about the x-axis is similar that rotating about the z-axis in that the rotation still follows the right-hand-rule. Note that the right hand rule in this case curls towards the extension of the z-axis. To construct the rotational matrix for x-axis, we must observe that the x-component (by definition of rotation about the x-axis) cannot change. Hence, we have the constraint the components affected by the x-component must not change:
 
 \begin{equation}
@@ -438,6 +446,8 @@ Now, suppose we would like to rotate a point from $(0, 1, 0) \rightarrow (0, 0, 
 
 
 \subsection{Rotation (y-Axis)}
+\includegraphics[scale=0.75]{yRotation}
+
 Now we would imagine that the extension to the y-axis would be similar to that of the x-axis and z-axis. We know that to construct the rotational matrix for y-axis, we must observe that the y-component (again by definition of rotation about the y-axis) cannot change:
 
 \begin{equation}
@@ -623,6 +633,8 @@ We arrive at our final set of transformation $g$ where $g$ is some global transf
 Note that the order in which we apply the matrices matter! The new set of points $p'$ will simply be $p' = gp$.
 
 \section{Degrees of Freedom}
+\includegraphics[scale=0.75]{DOF}
+
 Now that we are able to translate, scale, and rotate in 3 dimensional space, we notice that there exists six degrees of freedom (DoF). The degrees of freedom of an object refers to the number of ways by which it can move. For 3 dimensions, the six degrees of freedom include:
 
 \begin{enumerate}
@@ -633,6 +645,8 @@ Now that we are able to translate, scale, and rotate in 3 dimensional space, we 
     \item Rotating about y-axis (yaw)
     \item Rotating about z-axis (roll)
 \end{enumerate}
+
+\includegraphics[scale=0.5]{gimballock}
 
 However, the degrees of freedom are not as free as one would think. Suppose we represent the orientation (or pose) of an object (e.g. an airplane) by its position (x, y, z) and three gimbals (rings representing the rotation about x, y, and z-axis) in 3D space.
 
